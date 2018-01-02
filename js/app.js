@@ -1,10 +1,10 @@
-function begin() {
+function begin() { // carga primero el html para poner las imagenes
   // contenedor principal
   var $container = $('.container-search');
 
-  $('input').prop('disabled', true);
+  $('input').prop('disabled', true); // desactivar el input antes de que se carguen las imagenes
 
-  // funcion para mostrar los restaurantes
+  // funcion para mostrar los restaurantes (imagenes)
   function showPoints() {
     var str = '';
     var template = '<figure>' +
@@ -43,7 +43,8 @@ $(window).on('load', function() {
 
   function modalDetail() {
     var $modal = $('#exampleModalCenter');
-    var element = data[parseInt($(this).data('pos'))];
+    // debugger
+    var element = data[parseInt($(this).data('pos'))]; // data[posicion] en console te bota el objeto con todas sus keys
 
     $modal.find('#exampleModalLongTitle').text(element.nombre);
     $modal.find('h3').text($(this).attr('alt'));
@@ -60,8 +61,8 @@ $(window).on('load', function() {
   // filtramos la selección
   function search() {
     if ($(this).val()) {
-      $('.container-search img').each(function(index) {
-        if (!data[index].tags.match($('input').val())) {
+      $('.container-search img').each(function(index) { //index --> jquery genera esos indices
+        if (!data[index].tags.match($('input').val())) { //  logica cntraria, si da true(coindice con algun tag) oculta el elementos, pero i da false no ocualta nada
           $(this).hide();
         }
       });
